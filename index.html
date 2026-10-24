@@ -8,14 +8,43 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main>
+<header>
   <h1 class="glitch" data-text="haruki">haruki</h1>
   <p class="sub">haruki.lol</p>
-  <nav>
-    <a href="https://github.com/harukicozy" target="_blank" rel="noopener">github</a>
-    <a href="https://discord.gg/harukiwtf" target="_blank" rel="noopener">discord</a>
-  </nav>
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-tab="home" role="tab">home</button>
+    <button class="tab" data-tab="about" role="tab">about me</button>
+    <button class="tab" data-tab="shop" role="tab">shop</button>
+    <button class="tab" data-tab="free" role="tab">free stuff</button>
+  </div>
+</header>
+
+<main>
+  <section id="home" class="panel active">
+    <nav>
+      <a href="https://github.com/harukicozy" target="_blank" rel="noopener">github</a>
+      <a href="https://discord.gg/harukiwtf" target="_blank" rel="noopener">discord</a>
+    </nav>
+  </section>
+
+  <section id="about" class="panel">
+    <h2>about me</h2>
+    <p>i'm haruki.</p>
+    <p class="muted">more coming soon.</p>
+  </section>
+
+  <section id="shop" class="panel">
+    <h2>shop</h2>
+    <p class="soon">coming soon</p>
+  </section>
+
+  <section id="free" class="panel">
+    <h2>free stuff</h2>
+    <p class="soon">coming soon</p>
+  </section>
 </main>
+
 <footer>© haruki</footer>
+<script src="script.js"></script>
 </body>
 </html>
