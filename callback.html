@@ -16,36 +16,20 @@
   </nav>
 </main>
 <script>
-  // Public URL of the host running the bot, no trailing slash
-  const BOT_URL = 'https://YOUR-BOT-HOST';
-
-  const title = document.getElementById('title');
-  const msg = document.getElementById('msg');
-  const links = document.getElementById('links');
-
-  function done(t, m) {
-    title.textContent = t;
-    msg.textContent = m;
-    links.hidden = false;
-    document.title = t + ' | haruki.lol';
-  }
+  // The bot host is plain http, so we navigate to it (fetch from https would be blocked).
+  // The bot finishes verification and sends the user back to /verified.
+  const BOT_URL = 'http://fi11.bot-hosting.cloud:25362';
 
   const params = new URLSearchParams(location.search);
   const code = params.get('code');
   const state = params.get('state');
 
-  if (!code || !state) {
-    done('invalid', 'invalid verification link. run /verify again.');
-  } else if (BOT_URL.includes('YOUR-BOT-HOST')) {
-    done('offline', 'verification is not available right now.');
+  if (code && state) {
+    location.replace(BOT_URL + '/callback?' + new URLSearchParams({ code, state }));
   } else {
-    fetch(BOT_URL + '/callback?' + new URLSearchParams({ code, state, json: 1 }))
-      .then(r => r.json())
-      .then(d => d.ok
-        ? done('verified', "you're all set. you can close this tab.")
-        : done('failed', d.error || 'something went wrong. run /verify again.'))
-      .catch(() => done('offline', 'could not reach the verify bot. try again later.'));
-    history.replaceState(null, '', '/callback');
+    document.getElementById('title').textContent = 'invalid';
+    document.getElementById('msg').textContent = 'invalid verification link. run /verify again.';
+    document.getElementById('links').hidden = false;
   }
 </script>
 </body>
