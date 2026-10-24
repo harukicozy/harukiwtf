@@ -3,24 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>verifying... | haruki.lol</title>
+<title>verifying | haruki.lol</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main>
-  <h1>haruki</h1>
-  <p class="sub" id="msg">verifying...</p>
+  <h1 id="title">verifying</h1>
+  <p class="sub" id="msg">hold on...</p>
+  <nav id="links" hidden>
+    <a href="https://discord.gg/harukiwtf" target="_blank" rel="noopener">discord</a>
+    <a href="/">home</a>
+  </nav>
 </main>
 <script>
   // Public URL of the host running the bot, no trailing slash
   const BOT_URL = 'https://YOUR-BOT-HOST';
 
+  const title = document.getElementById('title');
+  const msg = document.getElementById('msg');
+  const links = document.getElementById('links');
+
+  function done(t, m) {
+    title.textContent = t;
+    msg.textContent = m;
+    links.hidden = false;
+    document.title = t + ' | haruki.lol';
+  }
+
   const params = new URLSearchParams(location.search);
-  if (params.get('code') && params.get('state') && !BOT_URL.includes('YOUR-BOT-HOST')) {
-    const q = new URLSearchParams({ code: params.get('code'), state: params.get('state') });
-    location.replace(BOT_URL + '/callback?' + q);
+  const code = params.get('code');
+  const state = params.get('state');
+
+  if (!code || !state) {
+    done('invalid', 'invalid verification link. run /verify again.');
+  } else if (BOT_URL.includes('YOUR-BOT-HOST')) {
+    done('offline', 'verification is not available right now.');
   } else {
-    document.getElementById('msg').textContent = 'invalid verification link. run /verify again.';
+    fetch(BOT_URL + '/callback?' + new URLSearchParams({ code, state, json: 1 }))
+      .then(r => r.json())
+      .then(d => d.ok
+        ? done('verified', "you're all set. you can close this tab.")
+        : done('failed', d.error || 'something went wrong. run /verify again.'))
+      .catch(() => done('offline', 'could not reach the verify bot. try again later.'));
+    history.replaceState(null, '', '/callback');
   }
 </script>
 </body>
