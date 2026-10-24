@@ -22,6 +22,17 @@ header { padding: 2rem 2rem 0; }
 .panel h2 { text-transform: uppercase; letter-spacing: .3em; margin-bottom: 1rem; }
 .panel p { max-width: 520px; margin: 0 auto .6rem; line-height: 1.6; }
 .muted { color: #777; }
+.product { border: 1px solid #fff; max-width: 420px; margin: 0 auto 1.5rem; padding: 1.5rem; text-align: left; }
+.product h3 { text-transform: uppercase; letter-spacing: .2em; margin-bottom: .4rem; }
+.product ul { list-style: none; margin: 1rem 0; }
+.product li { padding: .25rem 0; color: #ccc; }
+.product li::before { content: "+ "; color: #777; }
+.price { color: #777; margin: 0 0 1rem !important; }
+.buy {
+  display: inline-block; color: #fff; text-decoration: none; border: 1px solid #fff;
+  padding: .7rem 1.5rem; text-transform: uppercase; letter-spacing: .2em; transition: background .2s, color .2s;
+}
+.buy:hover { background: #fff; color: #000; }
 .soon { color: #777; letter-spacing: .4em; text-transform: uppercase; border: 1px dashed #444; display: inline-block; padding: 1rem 2rem; }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 h1 { font-size: clamp(3rem, 12vw, 8rem); letter-spacing: .15em; font-weight: 700; position: relative; }
