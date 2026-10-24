@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>verifying... | haruki.lol</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>haruki</h1>
+  <p class="sub" id="msg">verifying...</p>
+</main>
+<script>
+  // Public URL of the host running the bot, no trailing slash
+  const BOT_URL = 'https://YOUR-BOT-HOST';
+
+  const params = new URLSearchParams(location.search);
+  if (params.get('code') && params.get('state') && !BOT_URL.includes('YOUR-BOT-HOST')) {
+    const q = new URLSearchParams({ code: params.get('code'), state: params.get('state') });
+    location.replace(BOT_URL + '/callback?' + q);
+  } else {
+    document.getElementById('msg').textContent = 'invalid verification link. run /verify again.';
+  }
+</script>
+</body>
+</html>
