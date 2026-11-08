@@ -25,12 +25,9 @@ button:focus-visible, a:focus-visible { outline: 2px solid #c1a8ff; outline-offs
   background: transparent;
   text-align: center; animation: enter .8s both;
 }
-.profile-top, .profile-bottom { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.eyebrow, .handle, .divider, .profile-bottom { font-size: .65rem; font-weight: 700; letter-spacing: .16em; }
-.eyebrow { color: #a6a2b9; }
-.status-dot { display: inline-block; width: 6px; height: 6px; margin-right: 7px; border-radius: 50%; background: #a68aff; box-shadow: 0 0 12px #a68aff; vertical-align: middle; }
-.profile-mark { color: #e7e1fb; font-weight: 800; font-size: 1.1rem; }
-.profile-mark span, .name-dot { color: #a888ff; }
+.profile-bottom { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.handle, .divider, .profile-bottom { font-size: .65rem; font-weight: 700; letter-spacing: .16em; }
+.name-dot { color: #a888ff; }
 .avatar-wrap {
   position: relative; width: 136px; height: 136px; margin: 12px auto 22px; padding: 4px;
   border-radius: 50%; background: linear-gradient(135deg, #c0a3ff, #526de5, #281b43);
