@@ -46,18 +46,30 @@ function updateMusicButton() {
   musicLabel.textContent = playing ? 'Pause' : 'Play';
 }
 
-musicButton.addEventListener('click', async () => {
+let playbackAttempt = 0;
+
+async function startMusic(automatic = false) {
+  const attempt = ++playbackAttempt;
   musicError.hidden = true;
-  if (!music.paused) {
-    music.pause();
-    return;
-  }
   try {
     await music.play();
   } catch (error) {
+    if (attempt !== playbackAttempt) return;
     console.error('Unable to play background music:', error);
-    musicError.textContent = 'Could not play music. Please try again.';
+    musicError.textContent = automatic && error.name === 'NotAllowedError'
+      ? 'Autoplay is blocked. Press Play to listen.'
+      : 'Could not play music. Please try again.';
     musicError.hidden = false;
+  }
+}
+
+musicButton.addEventListener('click', () => {
+  if (!music.paused) {
+    playbackAttempt++;
+    music.pause();
+    musicError.hidden = true;
+  } else {
+    startMusic();
   }
 });
 
@@ -68,3 +80,5 @@ music.addEventListener('error', () => {
   musicError.textContent = 'Could not load music. Please try again later.';
   musicError.hidden = false;
 });
+
+startMusic(true);
