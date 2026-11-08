@@ -43,7 +43,7 @@ function updateMusicButton() {
   const playing = !music.paused;
   musicButton.setAttribute('aria-pressed', String(playing));
   musicButton.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
-  musicLabel.textContent = playing ? 'PAUSE MUSIC' : 'PLAY MUSIC';
+  musicLabel.textContent = playing ? 'Pause' : 'Play';
 }
 
 musicButton.addEventListener('click', async () => {
