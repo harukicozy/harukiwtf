@@ -1,6 +1,5 @@
 const music = document.getElementById('music');
 const musicButton = document.querySelector('.music-toggle');
-const musicLabel = document.querySelector('.music-label');
 const musicError = document.querySelector('.music-error');
 const discordName = document.getElementById('discord-name');
 const discordIcon = document.getElementById('discord-icon');
@@ -42,13 +41,14 @@ loadDiscordInvite();
 function updateMusicButton() {
   const playing = !music.paused;
   musicButton.setAttribute('aria-pressed', String(playing));
-  musicButton.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
-  musicLabel.textContent = playing ? 'Pause' : 'Play';
+  const label = playing ? 'Pause music' : 'Play music';
+  musicButton.setAttribute('aria-label', label);
+  musicButton.title = label;
 }
 
 let playbackAttempt = 0;
 
-async function startMusic(automatic = false) {
+async function startMusic() {
   const attempt = ++playbackAttempt;
   musicError.hidden = true;
   try {
@@ -56,9 +56,7 @@ async function startMusic(automatic = false) {
   } catch (error) {
     if (attempt !== playbackAttempt) return;
     console.error('Unable to play background music:', error);
-    musicError.textContent = automatic && error.name === 'NotAllowedError'
-      ? 'Autoplay is blocked. Press Play to listen.'
-      : 'Could not play music. Please try again.';
+    musicError.textContent = 'Could not play music. Please try again.';
     musicError.hidden = false;
   }
 }
@@ -80,5 +78,3 @@ music.addEventListener('error', () => {
   musicError.textContent = 'Could not load music. Please try again later.';
   musicError.hidden = false;
 });
-
-startMusic(true);
