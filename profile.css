@@ -72,7 +72,6 @@ h1 { margin: 0; font-size: clamp(2.7rem, 8vw, 4rem); line-height: 1; letter-spac
 .social svg { width: 17px; height: 17px; color: #b9a2ff; }
 .social:hover { transform: translateY(-3px); border-color: rgba(181, 149, 255, .5); background: rgba(137, 99, 255, .13); box-shadow: 0 7px 25px rgba(109, 72, 196, .2); }
 .profile-bottom { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .08); color: #817c91; font-size: .57rem; text-align: left; }
-.bottom-star { color: #a888ff; }
 .music-toggle { display: inline-flex; align-items: center; gap: 7px; border: 0; padding: 6px 0 6px 6px; color: #c6b8eb; background: transparent; font-size: .58rem; font-weight: 700; letter-spacing: .1em; white-space: nowrap; cursor: pointer; }
 .music-toggle:hover { color: #fff; }
 .music-toggle svg { width: 16px; height: 16px; }
